@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Juan & Nerea · Nuestra boda</title>
+  <meta name="description" content="Todo lo que necesitas saber sobre nuestra boda y el formulario para confirmar tu asistencia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       CONFIGURACIÓN RÁPIDA
+       Busca "[" en este archivo para encontrar todo lo que tienes
+       que rellenar (nombres, fecha, lugar, enlace del formulario…)
+       ============================================================ */
+    :root {
+      --bg: #faf7f2;
+      --surface: #ffffff;
+      --text: #2f2a26;
+      --muted: #7a6f66;
+      --accent: #8a9a7b;      /* verde salvia */
+      --accent-dark: #6d7d5f;
+      --line: #e6ded3;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400; }
+    a { color: var(--accent-dark); }
+
+    /* ---------- Portada ---------- */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 20px;
+      background:
+        linear-gradient(rgba(250,247,242,.82), rgba(250,247,242,.92)),
+        radial-gradient(circle at 20% 20%, #e9eee4 0, transparent 50%),
+        radial-gradient(circle at 80% 80%, #f1e6da 0, transparent 50%);
+    }
+    .hero .eyebrow {
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .hero h1 {
+      font-size: clamp(48px, 11vw, 104px);
+      line-height: 1.05;
+      margin: 18px 0 10px;
+    }
+    .hero h1 .amp { font-style: italic; color: var(--accent); }
+    .hero .date {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(22px, 4vw, 30px);
+      color: var(--muted);
+    }
+    .countdown {
+      display: flex;
+      gap: 28px;
+      margin: 36px 0 40px;
+    }
+    .countdown div { min-width: 56px; }
+    .countdown strong {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .countdown span { font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 15px 34px;
+      border-radius: 999px;
+      font-weight: 500;
+      letter-spacing: .03em;
+      transition: background .2s, transform .2s;
+    }
+    .btn:hover { background: var(--accent-dark); transform: translateY(-2px); }
+    .btn.ghost { background: transparent; color: var(--accent-dark); border: 1px solid var(--accent); }
+    span.btn.ghost { cursor: default; }
+    span.btn.ghost:hover { background: transparent; color: var(--accent-dark); transform: none; }
+
+    /* ---------- Secciones ---------- */
+    section { padding: 88px 20px; }
+    .wrap { max-width: 760px; margin: 0 auto; }
+    .section-title { text-align: center; margin-bottom: 40px; }
+    .section-title h2 { font-size: clamp(36px, 7vw, 52px); }
+    .section-title .divider {
+      width: 60px; height: 1px; background: var(--accent); margin: 14px auto 0;
+    }
+    .story p { margin-bottom: 18px; text-align: center; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 30px 26px;
+      text-align: center;
+    }
+    .card .icon { font-size: 28px; margin-bottom: 8px; }
+    .card h3 { font-size: 28px; margin-bottom: 6px; }
+    .card .time { font-weight: 500; color: var(--accent-dark); margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 15px; }
+    .card a { display: inline-block; margin-top: 14px; font-size: 15px; }
+
+    .alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    .info-list { list-style: none; display: grid; gap: 18px; }
+    .info-list li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .info-list .icon { font-size: 22px; line-height: 1.4; }
+    .info-list strong { display: block; }
+    .info-list span { color: var(--muted); font-size: 15px; }
+
+    .rsvp { text-align: center; }
+    .rsvp p { margin-bottom: 28px; color: var(--muted); }
+    .rsvp .deadline { font-weight: 500; color: var(--text); }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px 56px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    footer .names { font-family: "Cormorant Garamond", serif; font-size: 26px; color: var(--text); }
+
+    @media (max-width: 480px) {
+      body { font-size: 16px; }
+      .countdown { gap: 16px; }
+      .countdown strong { font-size: 32px; }
+      section { padding: 64px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== PORTADA ===================== -->
+  <header class="hero">
+    <p class="eyebrow">¡Nos casamos!</p>
+    <h1>Juan <span class="amp">&amp;</span> Nerea</h1>
+    <p class="date">Sábado, 19 de junio de 2027 · Tomelloso</p>
+
+    <div class="countdown" id="countdown" aria-label="Cuenta atrás">
+      <div><strong id="cd-days">–</strong><span>días</span></div>
+      <div><strong id="cd-hours">–</strong><span>horas</span></div>
+      <div><strong id="cd-mins">–</strong><span>min</span></div>
+    </div>
+
+    <a class="btn" href="#confirmar">Confirmar asistencia</a>
+  </header>
+
+  <!-- ===================== NUESTRA HISTORIA ===================== -->
+  <section class="story">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Nuestra historia</h2>
+        <div class="divider"></div>
+      </div>
+      <p>Después de tantos momentos compartidos, hemos decidido dar el paso y celebrar nuestro amor rodeados de las personas que más queremos.</p>
+      <p>Nos haría muchísima ilusión que nos acompañaras en este día tan especial.</p>
+    </div>
+  </section>
+
+  <!-- ===================== EL DÍA ===================== -->
+  <section class="alt">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>El gran día</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="icon">💍🥂</div>
+          <h3>Ceremonia y celebración</h3>
+          <p class="time">Sábado, 19 de junio de 2027</p>
+          <p>Salones Mabel<br>Tomelloso (Ciudad Real)</p>
+          <p><em>Hora por confirmar</em></p>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Salones+Mabel+Tomelloso" target="_blank" rel="noopener">Ver en el mapa →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONFIRMAR ASISTENCIA ===================== -->
+  <section class="alt rsvp" id="confirmar">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>¿Nos acompañas?</h2>
+        <div class="divider"></div>
+      </div>
+      <p>
+        Muy pronto podrás confirmar aquí tu asistencia y contarnos
+        si tienes alguna alergia o intolerancia alimentaria.
+      </p>
+      <!-- Cuando tengas el Google Form: cambia el span por
+           <a class="btn" href="https://forms.gle/TU_FORMULARIO" target="_blank" rel="noopener">Abrir formulario</a> -->
+      <span class="btn ghost">Formulario disponible próximamente</span>
+    </div>
+  </section>
+
+  <footer>
+    <p class="names">Juan &amp; Nerea</p>
+    <p>19 · 06 · 2027</p>
+  </footer>
+
+  <script>
+    // Fecha y hora de la boda (formato AAAA-MM-DDTHH:MM, hora local)
+    const WEDDING_DATE = new Date("2027-06-19T12:00");
+
+    function tick() {
+      const diff = WEDDING_DATE - new Date();
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "<div><strong>¡Hoy es el día!</strong></div>";
+        return;
+      }
+      const mins = Math.floor(diff / 60000);
+      document.getElementById("cd-days").textContent = Math.floor(mins / 1440);
+      document.getElementById("cd-hours").textContent = Math.floor((mins % 1440) / 60);
+      document.getElementById("cd-mins").textContent = mins % 60;
+    }
+    tick();
+    setInterval(tick, 30000);
+  </script>
+</body>
+</html>
